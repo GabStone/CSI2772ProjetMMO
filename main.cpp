@@ -10,9 +10,13 @@
 #include "Player.h"
 #include "GameBoard.h"
 
+/**
+ * main function for the project
+ * @return The program has finished execution
+ */
 int main() {
     GameBoard<int, int> gb(5, 5);
-    std:: cout << "Hello FUCKING world" << "\n";
+    std:: cout << "Hello bro world" << "\n";
     int x(10);
     int y(10);
     int sum = x + y;
