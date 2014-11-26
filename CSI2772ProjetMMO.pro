@@ -20,4 +20,5 @@ SOURCES += main.cpp
 HEADERS += \
     GameBoard.h \
     Player.h \
-    Tile.h
+    Tile.h \
+    AllTiles.h

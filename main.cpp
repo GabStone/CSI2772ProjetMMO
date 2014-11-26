@@ -9,6 +9,7 @@
 
 #include "Player.h"
 #include "GameBoard.h"
+#include <string>
 
 /**
  * main function for the project
@@ -22,9 +23,29 @@ int main() {
     int sum = x + y;
     std:: cout << "La somme de x et y = " << sum << "\n";
     // adding random code for a test
+    int **m;
+    m = new int *[10];
 
+    for (int i = 0; i < 10; i++) {
+        m[i] = new int[10];
+    }
+    // creation d'une matrice 10x10
 
+    m[1][1] = 100;
+    m[1][1]++;
+    std:: cout << m[1][1] << "\n";
 
+    std::string s1;
+    std::string s2;
 
+    s1 = "gabriel";
+    s2 = "gAbriel";
+
+    if (s1 == s2) {
+        std:: cout << "Egale" << "\n";
+    }
+    else {
+        std:: cout << "pas egale" << "\n";
+    }
     return 0;
 }
