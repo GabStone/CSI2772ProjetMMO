@@ -32,9 +32,9 @@ public:
         return true;
     }
 
-    //TileRestaurant* clone() {
-
-    //}
+    TileRestaurant* clone() {
+        return new TileRestaurant(col, ligne);
+    }
 };
 
 
@@ -73,11 +73,10 @@ public:
         return result;
     }
 
-    //TileMarchandEpice* clone() {
-
-    //}
+    TileMarchandEpice* clone() {
+        return new TileMarchandEpice(col, ligne);
+    }
 };
-
 
 
 
@@ -116,9 +115,9 @@ public:
         return result;
     }
 
-    //TileMarchandTissus* clone() {
-
-    //}
+    TileMarchandTissus* clone() {
+        return new TileMarchandTissus(col, ligne);
+    }
 
 
 };
@@ -158,10 +157,9 @@ public:
         return result;
     }
 
-
-    //TileBijoutier* clone() {
-
-    //}
+    TileBijoutier* clone() {
+        return new TileBijoutier(col, ligne);
+    }
 };
 
 
@@ -197,9 +195,9 @@ public:
     }
 
 
-    //TileFabriquantCharrette* clone() {
-
-    //}
+    TileFabriquantCharrette* clone() {
+        return new TileFabriquantCharrette(col, ligne);
+    }
 };
 
 
@@ -240,18 +238,16 @@ public:
     }
 
 
-    //TilePetitMarche* clone() {
-
-    //}
+    TilePetitMarche* clone() {
+        return new TilePetitMarche(col, ligne);
+    }
 };
-
 
 
 
 
 // Tile qui correspond a un marche d'epices
 // Fonctionnalite: Le joueur peut vendre 3 sac d'epices pour 6 pieces d'or
-
 
 template <typename J>
 class TileMarcheEpice : public Tile<J> {
@@ -278,9 +274,9 @@ public:
         return result;
     }
 
-    //TileMarcheEpice* clone() {
-
-    //}
+    TileMarcheEpice* clone() {
+        return new TileMarchandEpice(col, ligne);
+    }
 };
 
 
@@ -315,11 +311,9 @@ public:
         return result;
     }
 
-    //TileMarcheBijoux* clone() {
-
-    //}
-
-
+    TileMarcheBijoux* clone() {
+        return new TileMarcheBijoux(col, ligne);
+    }
 };
 
 
@@ -353,10 +347,9 @@ public:
         return result;
     }
 
-    //TileMarcheTissus* clone() {
-
-    //}
-
+    TileMarcheTissus* clone() {
+        return new TileMarcheTissus(col, ligne);
+    }
 };
 
 
@@ -367,7 +360,6 @@ public:
 // Fonctinnalite: pour une piece d'or le joueur obtient au hasard
 // entre 0 et 5 tissus, epice et/ou bijoux
 // (moins si la capacite du joueur ne le permet pas)
-
 
 template <typename J>
 class TileMarcheNoir : public Tile<J>{
@@ -420,9 +412,9 @@ public:
         return result;
     }
 
-    //TileMarcheNoir* clone() {
-
-    //}
+    TileMarcheNoir* clone() {
+        return new TileMarcheNoir(col, ligne);
+    }
 };
 
 
@@ -436,7 +428,6 @@ public:
 // 2 chances sur 10 de gagner 3 pieces d'or
 // 1 chance sur 10 de gagner 10 pieces d'or
 
-
 template <typename J>
 class TileCasino : public Tile<J>{
 
@@ -449,16 +440,26 @@ public:
         // On appelle le constructeur de la class Tile
     }
 
-    //bool action(Player& player) {
+    bool action(Player& player) {
+        bool result;
+        if (player.getGold() >= 1) {
+            player.setGold(player.getGold() - 1);
 
-   //}
+            // ???
 
-    //TileCasino* clone() {
+            result = true;
 
-    //}
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
 
+    TileCasino* clone() {
+        return new TileCasino(col, ligne);
+    }
 };
-
 
 
 
@@ -494,9 +495,9 @@ public:
         return result;
     }
 
-    //TileMarchandGemme* clone() {
-
-    //}
+    TileMarchandGemme* clone() {
+        return new TileMarchandGemme(col, ligne);
+    }
 };
 
 
@@ -534,9 +535,8 @@ public:
         return result;
     }
 
-    //TilePalais* clone() {
-
-    //}
-
+    TilePalais* clone() {
+        return new TilePalais(col, ligne);
+    }
 };
 #endif // ALLTILES_H

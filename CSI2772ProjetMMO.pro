@@ -22,4 +22,5 @@ HEADERS += \
     Player.h \
     Tile.h \
     AllTiles.h \
-    RandomNumber.h
+    RandomNumber.h \
+    TileFactory.h
