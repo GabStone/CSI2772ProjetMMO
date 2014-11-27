@@ -15,6 +15,8 @@
 // Sur chaque tuile, peut se trouver un ou plusieurs joueurs de type J
 template <typename J>
 
+// NOTE: Cette class Tile correspond a une tile de type Desert
+
 class Tile {
 
 private:
@@ -30,9 +32,15 @@ public:
 
     // Constructeur de la class Tile
     Tile(int col, int ligne) {
+        if (col < 0 || ligne < 0) {
+            this->col = 0;
+            this->ligne = 0;
+        }
+        else {
         // Initialisation des attributs ligne et col
         this->col = col;
         this->ligne = ligne;
+        }
     }
 
     bool operator==(const Tile &t) {
@@ -42,13 +50,14 @@ public:
             return false;
     }
 
-//    virtual bool action(Player& player) {
+    virtual bool action(Player& player) {
+        // Aucune action est possible sur une Tile desert
+        return this->action(player);
+    }
 
-//    }
-
-//    virtual Tile* clone() {
-
-//    }
+    virtual Tile* clone() {
+        return this->clone();
+    }
 
 //    ostream& operator<<(ostream &out, const Tile& tile) {
 

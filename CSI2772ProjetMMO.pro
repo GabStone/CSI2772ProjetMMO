@@ -21,4 +21,5 @@ HEADERS += \
     GameBoard.h \
     Player.h \
     Tile.h \
-    AllTiles.h
+    AllTiles.h \
+    RandomNumber.h

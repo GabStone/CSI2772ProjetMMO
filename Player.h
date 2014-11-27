@@ -79,6 +79,29 @@ public:
         return (gold + ruby + fabric + jewel + spice);
     }
 
+    /*
+        Decrement le montant de gold du joueur par x
+     */
+    void decrementeGold(int x) {
+        this->gold = gold - x;
+    }
+
+    /*
+     *  Retourne le montant de ressource du joueur
+     */
+    int getSize() {
+       return (spice + fabric + jewel + ruby);
+    }
+
+    /*
+     * Retourne la capacite disponible
+     */
+    int getCapacityAvailable() {
+        return (this->getCart() - this->getSize());
+    }
+
+
+
 
 
     /*
@@ -107,6 +130,10 @@ public:
 
     int getFood() {
         return this->food;
+    }
+
+    int getSpice() {
+        return this->spice;
     }
 
     string getName() {
@@ -139,6 +166,10 @@ public:
 
     void setName(string name) {
         this->name = name;
+    }
+
+    void setSpice(int spice) {
+        this->spice = spice;
     }
 };
 #endif // PLAYER_H

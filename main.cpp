@@ -10,13 +10,29 @@
 #include "Player.h"
 #include "GameBoard.h"
 #include <string>
+#include "Tile.h"
+#include "AllTiles.h"
+#include "RandomNumber.h"
 
 /**
  * main function for the project
  * @return The program has finished execution
  */
 int main() {
+    RandomNumber::initaliseRand();
+    \
+    int t = 10;
+    while (t > 0) {
+        std:: cout << RandomNumber::randomNumber(10) << "\n";
+        t--;
+    }
+
+
     GameBoard<int, int> gb(5, 5);
+    Player gaby("gabriel Stone");
+    gaby.eat();
+    gaby.decrementeGold(1);
+    std:: cout << gaby.getName() << "\n";
     std:: cout << "Hello bro world" << "\n";
     int x(10);
     int y(10);
