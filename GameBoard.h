@@ -49,7 +49,6 @@ public:
     }
 
     void add(const T& tile, int row, int col) {
-
         // row et/ou col non valide
         if (row < 0 || col < 0 || col > this->col-1 || row > this->ligne-1) {
             throw std::out_of_range("col et/ou row invalide");
