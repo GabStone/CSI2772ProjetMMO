@@ -33,8 +33,16 @@ public:
     }
 
     TileRestaurant* clone() {
-        return new TileRestaurant(col, ligne);
+        return new TileRestaurant(Tile<J>::col, Tile<J>::ligne);
     }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Restaurant" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
+    }
+
 };
 
 
@@ -74,7 +82,14 @@ public:
     }
 
     TileMarchandEpice* clone() {
-        return new TileMarchandEpice(col, ligne);
+        return new TileMarchandEpice(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marchand Epice" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -116,9 +131,15 @@ public:
     }
 
     TileMarchandTissus* clone() {
-        return new TileMarchandTissus(col, ligne);
+        return new TileMarchandTissus(Tile<J>::col, Tile<J>::ligne);
     }
 
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marchand Tissus" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
+    }
 
 };
 
@@ -158,7 +179,14 @@ public:
     }
 
     TileBijoutier* clone() {
-        return new TileBijoutier(col, ligne);
+        return new TileBijoutier(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Bijoutier" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -196,7 +224,14 @@ public:
 
 
     TileFabriquantCharrette* clone() {
-        return new TileFabriquantCharrette(col, ligne);
+        return new TileFabriquantCharrette(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Fabriquand Charrette" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -239,7 +274,14 @@ public:
 
 
     TilePetitMarche* clone() {
-        return new TilePetitMarche(col, ligne);
+        return new TilePetitMarche(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Petit Marche" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -275,7 +317,14 @@ public:
     }
 
     TileMarcheEpice* clone() {
-        return new TileMarchandEpice(col, ligne);
+        return new TileMarchandEpice(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marche Epice" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -312,7 +361,14 @@ public:
     }
 
     TileMarcheBijoux* clone() {
-        return new TileMarcheBijoux(col, ligne);
+        return new TileMarcheBijoux(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marche Bijoux" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -348,7 +404,14 @@ public:
     }
 
     TileMarcheTissus* clone() {
-        return new TileMarcheTissus(col, ligne);
+        return new TileMarcheTissus(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marche Tissus" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -413,7 +476,14 @@ public:
     }
 
     TileMarcheNoir* clone() {
-        return new TileMarcheNoir(col, ligne);
+        return new TileMarcheNoir(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marche Noir" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -444,11 +514,31 @@ public:
         bool result;
         if (player.getGold() >= 1) {
             player.setGold(player.getGold() - 1);
+            int gagne;
+            int chance = (RandomNumber::randomNumber(10) + 1);
+            // 2*(2/5) = 4/10 = 0 piece d'or
+            // 3/10 = 2 pieces d'or
+            // 2/10 = 3 pieces d'or
+            // 1/10 = 10 pieces d'or
 
-            // ???
-
+            // If chance = 1 ou 2 ou 3 ou 4 = 0 piece d'or
+            // If chance = 5 ou 6 ou 7 = 2 pieces d'or
+            // If chance = 8 ou 9 = 3 pieces d'or
+            // If chance = 10 = 10 pieces d'or
+            if (chance == 1 || chance == 2 || chance == 3 || chance == 4) {
+                gagne = 0;
+            }
+            else if (chance == 5 || chance == 6 || chance == 7) {
+                gagne = 2;
+            }
+            else if (chance == 8 || chance == 9) {
+                gagne = 3;
+            }
+            else if (chance == 10) {
+                gagne = 10;
+            }
+            player.setGold(player.getGold() + gagne);
             result = true;
-
         }
         else {
             result = false;
@@ -457,7 +547,14 @@ public:
     }
 
     TileCasino* clone() {
-        return new TileCasino(col, ligne);
+        return new TileCasino(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Casino" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -496,7 +593,14 @@ public:
     }
 
     TileMarchandGemme* clone() {
-        return new TileMarchandGemme(col, ligne);
+        return new TileMarchandGemme(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Marchand Gemme" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 
@@ -536,7 +640,14 @@ public:
     }
 
     TilePalais* clone() {
-        return new TilePalais(col, ligne);
+        return new TilePalais(Tile<J>::col, Tile<J>::ligne);
+    }
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Tile Palais" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
     }
 };
 #endif // ALLTILES_H

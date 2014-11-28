@@ -8,6 +8,8 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 #include <list>
+#include "Tile.h"
+#include "AllTiles.h"
 
 /*
  GameBoard est une class parametriser qui represente une grille de jeu
@@ -69,9 +71,14 @@ public:
         }
     }
 
-    //void getCoordinate(const  T &tile, int *row, int *col) {
+    void getCoordinate(const  T &tile, int *row, int *col) {
+        // On veut les coordonnee de la tuile
+        int _ligne = tile.getLigne();
+        int _col = tile.getCol();
 
-    //}
+        *row = _ligne;
+        *col = _col;
+    }
 
     void setPlayer(J player) {
         // On incremente n

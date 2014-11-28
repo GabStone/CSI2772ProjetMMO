@@ -9,8 +9,9 @@
 #define TILE_H
 
 #include "Player.h"
-#include <string>
+#include "string"
 #include <list>
+#include "sstream"
 
 // Sur chaque tuile, peut se trouver un ou plusieurs joueurs de type J
 template <typename J>
@@ -19,7 +20,7 @@ template <typename J>
 
 class Tile {
 
-private:
+protected:
 
     // List de joueur J qui se retrouve sur la tuile
     std::list<J> listPlayerTile;
@@ -59,10 +60,16 @@ public:
         return this->clone();
     }
 
-//    ostream& operator<<(ostream &out, const Tile& tile) {
-
-//    }
-
+    /*
+     * Methode toString() pour la methode operator<<
+     * Returne un std::string
+     */
+    virtual std::string toString() const {
+        std::stringstream ss;
+        ss << "Tile Type : " <<"Desert" << "\n";
+        ss << "Position : (" << ligne <<"," << col << ")";
+        return ss.str();
+    }
 
     // Methode GETTER
 
@@ -86,5 +93,13 @@ public:
 
 
 };
+
+/*
+ * Operator<< pour la class Tile (utilise toString())
+ */
+inline std::ostream& operator<<(std::ostream &out, const Tile& tile) {
+    out << tile.toString();
+    return out;
+}
 
 #endif // TILE_H
