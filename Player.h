@@ -37,6 +37,9 @@ public:
         cart = 9;
         jewel = 1;
     }
+    Player() {
+
+    }
 
     /*
      Retourne vrai si food > 0
@@ -100,8 +103,16 @@ public:
         return (this->getCart() - this->getSize());
     }
 
-
-
+    /*
+     * Returne vrai si le joueur a gagner
+     * AKA: possede 5 rubis
+     */
+    bool winner() {
+        if(this->ruby >= 5)
+            return true;
+        else
+            return false;
+    }
 
 
     /*

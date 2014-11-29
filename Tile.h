@@ -43,6 +43,11 @@ public:
         this->ligne = ligne;
         }
     }
+    // Constructeur par Default
+    Tile() {
+        col = 0;
+        ligne = 0;
+    }
 
     bool operator==(const Tile &t) {
         if (this->col == t.col && this->ligne == t.ligne)
@@ -51,7 +56,7 @@ public:
             return false;
     }
 
-    virtual bool action(Player& player) {
+    virtual bool action(J& player) {
         // Aucune action est possible sur une Tile desert
         return this->action(player);
     }

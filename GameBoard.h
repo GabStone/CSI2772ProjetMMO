@@ -46,9 +46,11 @@ public:
         grille = new T *[this->ligne];
 
         for (int i = 0; i < this->ligne; i++) {
-            grille[i] = new T [this->col];
+            grille[i] = new T[this->col];
         }
     }
+
+
 
     void add(const T& tile, int row, int col) {
         // row et/ou col non valide
