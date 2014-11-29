@@ -81,6 +81,10 @@ public:
         return ligne;
     }
 
+    std::list<J> getListPlayerTile() const {
+        return this->listPlayerTile;
+    }
+
     // Methode SETTER
 
     void setCol(int col) {
@@ -92,14 +96,19 @@ public:
     }
 
 
+    /*
+     * Operator<< pour la class Tile (utilise toString())
+     */
+    friend std::ostream& operator<<(std::ostream &out, const Tile& tile) {
+        out << tile.toString();
+        return out;
+    }
+
+
+
+
 };
 
-/*
- * Operator<< pour la class Tile (utilise toString())
- */
-inline std::ostream& operator<<(std::ostream &out, const Tile& tile) {
-    out << tile.toString();
-    return out;
-}
+
 
 #endif // TILE_H

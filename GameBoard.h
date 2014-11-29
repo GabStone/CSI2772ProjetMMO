@@ -10,6 +10,7 @@
 #include <list>
 #include "Tile.h"
 #include "AllTiles.h"
+#include <vector>
 
 /*
  GameBoard est une class parametriser qui represente une grille de jeu
@@ -28,7 +29,6 @@ private:
     int n; // Nombre de joueurs dans la partie
     T** grille; // Matrice qui va representer la grille de jeu
     std:: list<J> listPlayer;
-
 
 public:
 
@@ -108,14 +108,50 @@ public:
             return iterator;
     }
 
-    //const T& getTile(const std::string& playerName) const {
+    // Aller chercher la tile qui correspond a la location de Player
+    // que sont nom est passer en parametre
+    const T& getTile(const std::string& playerName) const {
+        int x;
+        int y;
+        bool trouver = false;
+        for (int i = 0; i < this->ligne; i++) {
+            for (int j = 0; j < this->col; j++) {
+                if (trouver == false) {
+                    // Une list contenant toutes les joueurs sur la tuiles grille[ligne][col]
+                    std::list<J> list = grille[ligne][col].getPlayerListTile();
+                    for (std::list<J>::iterator it = list.begin(); it != list.end(); ++it) {
 
-    //}
+                        if (*it.getName() == playerName) {
+                            // On a trouver le joueur qui porte le nom playerName
+                            x = i;
+                            y = j;
+                            trouver = true;
+                        }
+                    }
+                }
+                else {
+                    // On a deja trouver le joueur qui porte le nom playerName
+                    break;
+                }
+            }
+        }
+        return grille[x][y];
+    }
 
-    //std::vector<J> getPlayers(const T& tile) const {
+    std::vector<J> getPlayers(const T& tile) const {
+        // Vector qui va contenir tout les joueurs sur la tile passer en parametre
+        std::vector<J> vec;
+        std::list<J> list = tile.getListPlayerTile();
+        for (std::list<J>::iterator it = list.begin(); it != list.end(); ++it) {
+            vec.push_back(*it);
+        }
+        return vec;
+    }
 
-    //}
-
+    /*
+     * ???? AUCUNE IDEE ????
+     *
+     */
     //const T& move(Enum Move move, const std::string& playerName) {
 
     //}

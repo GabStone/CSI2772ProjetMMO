@@ -13,6 +13,7 @@
 #include "Tile.h"
 #include "AllTiles.h"
 #include "RandomNumber.h"
+#include "TileFactory.h"
 
 /**
  * main function for the project
@@ -76,8 +77,7 @@ int main() {
     std:: cout << tilePalais.getLigne() << "\n";
     std:: cout << tilePalais << "\n";
 
-
-
+    TileFactory<Tile<Player>> *tf = TileFactory<Tile<Player>>::get(20);
 
     return 0;
 }

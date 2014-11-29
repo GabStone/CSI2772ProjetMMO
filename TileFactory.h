@@ -1,5 +1,8 @@
 #ifndef TILEFACTORY_H
 #define TILEFACTORY_H
+#include <list>
+#include "Tile.h"
+#include "AllTiles.h"
 
 // Class TileFactory
 // Cette class est une frabrique de tuile
@@ -13,40 +16,72 @@
  * Donc il y auras 2 tuiles desert
  */
 
+// TileFactory vas creer des Tile<J>
+template <typename J>
 class TileFactory {
 
 private:
     // Represente le nombre de tuiles a creer
     int xTiles;
 
-    static TileFactory tf = 0;
+    // Represente la list contenant xTiles Tile
+    std::list<Tile<J>*> tileList;
 
     // Constructeur de la class TileFactory
     // Prive car TileFactory doit etre un singleton
-   TileFactory(int xTiles) {
-       this->xTiles = xTiles;
+    TileFactory(int xTiles) {
+        this->xTiles = xTiles;
+
+        // Creation de xTiles Tile<J>
+        // On doit creer xTiles/14 de chaque tuile
+        int x = xTiles/14;
+
+        while (x > 0) {
+            tileList.push_back(new TileRestaurant<J>(0,0));
+            tileList.push_back(new TileMarchandEpice<J>(0,0));
+            tileList.push_back(new TileMarchandTissus<J>(0,0));
+            tileList.push_back(new TileBijoutier<J>(0,0));
+            tileList.push_back(new TileFabriquantCharrette<J>(0,0));
+            tileList.push_back(new TilePetitMarche<J>(0,0));
+            tileList.push_back(new TileMarchandEpice<J>(0,0));
+            tileList.push_back(new TileMarcheBijoux<J>(0,0));
+            tileList.push_back(new TileMarcheTissus<J>(0,0));
+            tileList.push_back(new TileMarcheNoir<J>(0,0));
+            tileList.push_back(new TileCasino<J>(0,0));
+            tileList.push_back(new TileMarchandGemme<J>(0,0));
+            tileList.push_back(new TilePalais<J>(0,0));
+            x--;
+        }
+
+
+
+
+
+
+
     }
 
 public:
 
-   static TileFactory *get(int xTiles) {
-       if (xTiles >= 14) {
-            static TileFactory tf(xTiles);
-            return &tf;
-       }
-       else {
-           return 0;
-       }
-   }
+    // On retourne null (0) si xTiles < 14
+    static TileFactory *get(int xTiles) {
+        if (xTiles >= 14) {
+            static TileFactory<J> instance(xTiles);
+            return &instance;
+        }
+        else {
+            return 0;
+        }
+    }
 
-   //Tile *next() {
+    //Tile *next() {
 
-   //}
+    //}
 
 
-   int getXTiles() {
-       return this->xTiles;
-   }
+    int getXTiles() {
+        return this->xTiles;
+    }
 };
 
 #endif // TILEFACTORY_H
